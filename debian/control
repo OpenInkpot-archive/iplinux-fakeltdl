@@ -1,0 +1,37 @@
+Source: fakeltdl
+Section: core
+Maintainer: Alexander V. Nikolaev <avn@daemon.hole.ru>
+Build-Depends: debhelper (>= 7), automake, libtool
+XCS-Cross-Host-Build-Depends: debhelper (>= 7), automake, libtool
+Priority: optional
+Standards-Version: 3.8.3
+
+Package: libfakeltdl0
+Priority: optional
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: OpenInkpot-specific version of GNU libltdl
+ This package provides stripped down libltdl
+
+Package: libfakeltdl-dev
+Priority: optional
+Architecture: any
+Depends: libfakeltdl0 (= ${binary:Version})
+Conflicts: libltdl-dev, libltdl3-dev, libltdl7-dev
+Description: OpenInkpot-specific version of GNU libltdl
+ This package provides stripped down version of GNU libltdl
+   - Only minimalistic set of features supported
+   - only dlopen() loader works
+ .
+ This package contains header files and symlinks necessary to link with library.
+
+Package: libfakeltdl-dbg
+Priority: extra
+Architecture: any
+Section: debug
+Depends: libfakeltdl0 (= ${binary:Version})
+Description: OpenInkpot-specific version of GNU libltdl -- debugging symbols
+ This package provides stripped down version of GNU libltdl
+ .
+ This package contains debugging symbols for shared library
+

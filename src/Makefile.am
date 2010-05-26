@@ -1,3 +1,4 @@
+AM_CFLAGS=-W -Wall
 lib_LTLIBRARIES = libfakeltdl.la
 
 include_HEADERS = fakeltdl.h ltdl.h

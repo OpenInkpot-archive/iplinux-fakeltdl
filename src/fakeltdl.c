@@ -68,7 +68,7 @@ lt_dlexit (void)
 lt_dlhandle
 lt_dlopen (const char *filename)
 {
-  return dlopen(filename, 0);
+  return dlopen(filename, RTLD_NOW | RTLD_GLOBAL);
 }
 
 
@@ -91,6 +91,17 @@ lt_dlopenext (const char *filename)
 }
 
 
+static char *
+has_library_ext (const char *filename, const char *so_ext)
+{
+  char *    ext     = 0;
+
+  ext = strrchr (filename, '.');
+  if (ext && !strcmp(ext, so_ext))
+    return ext;
+  return 0;
+}
+
 static int
 foreach_dir(const char *path, int (*func) (const char *filename, void *data), void *data)
 {
@@ -105,8 +116,11 @@ foreach_dir(const char *path, int (*func) (const char *filename, void *data), vo
       while ((dp = readdir (dirp)))
 	    if (dp->d_name[0] != '.')
 	    {
-            char *fullname;
+            char *fullname = NULL;
             asprintf(&fullname, "%s/%s", path, dp->d_name);
+            char *ext = has_library_ext(fullname, ".so");
+            if(ext)
+                *ext='\0';
             int rc = func(fullname, data);
             free(fullname);
             if(rc)

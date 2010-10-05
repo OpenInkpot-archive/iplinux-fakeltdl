@@ -1,3 +1,9 @@
+fakeltdl (0.1.1) zelazny; urgency=low
+
+  * Re-build to upload
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Tue, 05 Oct 2010 23:57:42 +0300
+
 fakeltdl (0.1) zelazny; urgency=low
 
   * Initial release. (Closes: #XXXXXX)
